@@ -3,7 +3,7 @@ from dig.fairgraph.dataset import POKEC, NBA
 import torch
 
 # Load the dataset and split
-pokec = POKEC(dataset_sample='pockec_n') # you may also choose 'pockec_n'
+pokec = POKEC(dataset_sample='pockec_z') # you may also choose 'pockec_n'
 
 # Print the current working directory
 import os
