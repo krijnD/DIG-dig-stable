@@ -52,7 +52,7 @@ class graphair(nn.Module):
         :type num_proj_hidden: int,optional
 
     '''
-    def __init__(self, aug_model, f_encoder, sens_model, classifier_model, lr = 1e-4, weight_decay = 1e-5, alpha = 20, beta = 0.9, gamma = 0.7, lam = 1, dataset = 'POKEC', batch_size = None, num_hidden = 64, num_proj_hidden = 64):
+    def __init__(self, aug_model, f_encoder, sens_model, classifier_model, lr = 1e-4, weight_decay = 1e-5, alpha = 0.1, beta = 1, gamma = 0.1, lam = 0.1, dataset = 'POKEC', batch_size = None, num_hidden = 64, num_proj_hidden = 64):
         super(graphair, self).__init__()
         self.aug_model = aug_model
         self.f_encoder = f_encoder
@@ -82,7 +82,7 @@ class graphair(nn.Module):
         self.fc2 = torch.nn.Linear(num_proj_hidden, num_hidden)
 
         self.optimizer_classifier = torch.optim.Adam(self.classifier.parameters(),
-                            lr=lr, weight_decay=weight_decay)
+                            lr=1e-3, weight_decay=weight_decay)
     
     def projection(self, z):
         z = F.elu(self.fc1(z))
